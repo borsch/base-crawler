@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="page">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="crawler-delay">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int" />
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="fields">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="field-description" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="allow-http-errors">
+                    <xs:simpleType>
+                        <xs:restriction>
+                            <xs:enumeration value="true" />
+                            <xs:enumeration value="false" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="field-description">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="selectors" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="alternative" minOccurs="1" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="source-type">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="value" />
+                                                <xs:enumeration value="attribute" />
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                    <xs:attribute name="source" />
+                                    <xs:attribute name="selector" use="required">
+                                        <xs:simpleType>
+                                            <xs:restriction>
+                                                <xs:minLength value="1" />
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="fields" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="field-description" maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+                <xs:element name="post-processors" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="substring" type="substring" minOccurs="0" />
+                            <xs:element name="replace" type="replace" minOccurs="0" />
+                            <xs:element name="prepend" type="prepend" minOccurs="0" />
+                            <xs:element name="regex" type="regex" minOccurs="0" />
+                            <xs:element name="set-value" type="set-value" minOccurs="0" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string" use="required" default="object" />
+            <xs:attribute name="type">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="object" />
+                        <xs:enumeration value="list" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="processor">
+        <xs:attribute name="order" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="substring">
+        <xs:complexContent>
+            <xs:extension base="processor">
+                <xs:attribute name="start" default="0" />
+                <xs:attribute name="end" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="replace">
+        <xs:complexContent>
+            <xs:extension base="processor">
+                <xs:attribute name="old">
+                    <xs:simpleType>
+                        <xs:restriction>
+                            <xs:minLength value="1" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute name="new" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="prepend">
+        <xs:complexContent>
+            <xs:extension base="processor">
+                <xs:attribute name="what">
+                    <xs:simpleType>
+                        <xs:restriction>
+                            <xs:minLength value="1" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="set-value">
+        <xs:complexContent>
+            <xs:extension base="processor">
+                <xs:attribute name="what" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="regex">
+        <xs:complexContent>
+            <xs:extension base="processor">
+                <xs:attribute name="expr">
+                    <xs:simpleType>
+                        <xs:restriction>
+                            <xs:minLength value="1" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute name="group-number">
+                    <xs:simpleType>
+                        <xs:restriction>
+                            <xs:minLength value="1" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>
