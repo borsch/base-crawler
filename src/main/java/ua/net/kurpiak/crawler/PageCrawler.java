@@ -4,7 +4,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import ua.net.kurpiak.crawler.domain.*;
-import ua.net.kurpiak.crawler.domain.callback.ICrawlerCallback;
 import ua.net.kurpiak.crawler.processors.IPostProcessor;
 import ua.net.kurpiak.crawler.utils.JsoupUtil;
 
@@ -13,39 +12,44 @@ import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class PageCrawler<T> {
 
     private final PageDescription pageDescription;
     private final JsoupUtil jsoupUtil;
-    private final ICrawlerCallback<T> crawlerCallback;
+    private final Supplier<T> supplier;
 
-    public PageCrawler(PageDescription pageDescription, JsoupUtil jsoupUtil, ICrawlerCallback<T> crawlerCallback) {
-        if (pageDescription == null || jsoupUtil == null || crawlerCallback == null) {
+    public PageCrawler(PageDescription pageDescription, JsoupUtil jsoupUtil, Supplier<T> supplier) {
+        if (pageDescription == null || jsoupUtil == null || supplier == null) {
             throw new IllegalArgumentException("All fields are required");
         }
 
         this.jsoupUtil = jsoupUtil;
         this.pageDescription = pageDescription;
-        this.crawlerCallback = crawlerCallback;
+        this.supplier = supplier;
     }
 
-    public void crawl(String url) {
-        T object = crawlerCallback.newInstance();
+    public T crawl(String url) {
+        T object = supplier.get();
 
         try {
             Document document = jsoupUtil.parse(url, pageDescription.isAllowHttpErrors());
 
-            if (document != null) {
-                for (FieldDescription fieldDescription : pageDescription.getFieldDescriptions()) {
-                    initializeField(document, fieldDescription, object);
-                }
+            if (document == null) {
+                return null;
+            }
+
+            for (FieldDescription fieldDescription : pageDescription.getFieldDescriptions()) {
+                initializeField(document, fieldDescription, object);
             }
         } catch (Exception e) {
             e.printStackTrace();
+
+            return null;
         }
 
-        crawlerCallback.handle(object);
+        return object;
     }
 
     private void initializeField(Element document, FieldDescription fieldDescription, Object object) {
