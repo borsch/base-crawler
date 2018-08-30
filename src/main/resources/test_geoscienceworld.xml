@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="crawler.xsd">
+    <crawler-delay>25000</crawler-delay>
+    <allow-http-errors>true</allow-http-errors>
+    <fields>
+        <field-description name="link">
+            <selectors>
+                <alternative selector="link[rel=canonical]" source-type="attribute" source="href" />
+            </selectors>
+        </field-description>
+        <field-description name="title">
+            <selectors>
+                <alternative selector=".article-title-main:first-child" />
+            </selectors>
+        </field-description>
+        <field-description name="abstractText">
+            <selectors>
+                <alternative selector=".abstract" />
+            </selectors>
+        </field-description>
+        <field-description name="authors" type="list">
+            <selectors>
+                <alternative selector=".al-authors-list > .al-author-name" />
+            </selectors>
+            <fields>
+                <field-description name="name">
+                    <selectors>
+                        <alternative selector=".info-card-name" />
+                    </selectors>
+                </field-description>
+                <field-description name="affiliations" type="list">
+                    <selectors>
+                        <alternative selector=".info-card-affilitation > .aff" />
+                    </selectors>
+                </field-description>
+
+                <field-description name="correspond" type="list">
+                    <selectors>
+                        <alternative selector=".info-card-affilitation [href^='mailto:']" />
+                    </selectors>
+                    <post-processors>
+                        <replace order="1" old="mailto:" new="" />
+                    </post-processors>
+                </field-description>
+            </fields>
+        </field-description>
+        <field-description name="references" type="list">
+            <selectors>
+                <alternative selector=".ref-list > [content-id]" />
+            </selectors>
+            <fields>
+                <field-description name="authors" type="list">
+                    <selectors>
+                        <alternative selector=".person-group > .name" />
+                    </selectors>
+                </field-description>
+                <field-description name="published">
+                    <selectors>
+                        <alternative selector=".year" />
+                    </selectors>
+                </field-description>
+                <field-description name="title">
+                    <selectors>
+                        <alternative selector=".article-title" />
+                    </selectors>
+                </field-description>
+                <field-description name="source">
+                    <selectors>
+                        <alternative selector=".source" />
+                    </selectors>
+                </field-description>
+                <field-description name="volume">
+                    <selectors>
+                        <alternative selector=".volume" />
+                    </selectors>
+                </field-description>
+                <field-description name="fpage">
+                    <selectors>
+                        <alternative selector=".fpage" />
+                    </selectors>
+                </field-description>
+                <field-description name="lpage">
+                    <selectors>
+                        <alternative selector=".lpage" />
+                    </selectors>
+                </field-description>
+                <field-description name="link">
+                    <selectors>
+                        <alternative selector=".link" />
+                    </selectors>
+                </field-description>
+            </fields>
+        </field-description>
+        <field-description name="doi">
+            <selectors>
+                <alternative selector=".citation-doi" />
+            </selectors>
+        </field-description>
+        <field-description name="published">
+            <selectors>
+                <alternative selector=".citation-date" />
+            </selectors>
+        </field-description>
+        <field-description name="fullTextPdf">
+            <selectors>
+                <alternative selector=".article-pdfLink" source-type="attribute" source="href" />
+            </selectors>
+            <post-processors>
+                <prepend order="1" what="https://pubs.geoscienceworld.org" />
+            </post-processors>
+        </field-description>
+        <field-description name="issns" type="list">
+            <selectors>
+                <alternative selector=".journal-footer-colophon > ul > li:first-child"/>
+            </selectors>
+            <post-processors>
+                <replace order="1" old="Online ISSN " new="" />
+            </post-processors>
+        </field-description>
+        <field-description name="copyright">
+            <selectors>
+                <alternative selector=".journal-footer-colophon li:last-child"/>
+            </selectors>
+        </field-description>
+        <field-description name="keywords" type="list">
+            <selectors>
+                <alternative selector=".kwd-group a"/>
+            </selectors>
+        </field-description>
+        <field-description name="classificationCodes" type="list">
+            <selectors>
+                <alternative selector=".article-metadata a"/>
+            </selectors>
+        </field-description>
+        <field-description name="publisherName">
+            <selectors>
+                <alternative selector=".site-theme-footer-image" source-type="attribute" source="alt"/>
+            </selectors>
+        </field-description>
+        <field-description name="publisherLocation">
+            <selectors>
+                <alternative selector=".global-footer-site-details li:nth-child(1), .global-footer-site-details li:nth-child(2)" />
+            </selectors>
+        </field-description>
+        <field-description name="journalTitle">
+            <selectors>
+                <alternative selector=".journal-logo" source-type="attribute" source="alt"/>
+            </selectors>
+        </field-description>
+        <field-description name="publisherId">
+            <selectors>
+                <alternative selector=".site-theme-footer-image" source-type="attribute" source="alt"/>
+            </selectors>
+        </field-description>
+        <field-description name="startEndPages">
+            <selectors>
+                <alternative selector=".ww-citation-primary" />
+            </selectors>
+            <post-processors>
+                <regex order="1" expr="([\d]+-[\d]+)" group-number="1" />
+            </post-processors>
+        </field-description>
+    </fields>
+</page>
