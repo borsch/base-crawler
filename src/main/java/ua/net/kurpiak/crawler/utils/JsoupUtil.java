@@ -18,6 +18,7 @@ public class JsoupUtil {
                     .userAgent("Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36")
                     .ignoreHttpErrors(allowErrors)
                     .timeout(1000 * 20)
+                    .cookie("__cfduid", "dd68fe86aad973df06387ecf14cd9b4221535566791")
                     .execute();
 
             int classOfCode = response.statusCode() / 100;
