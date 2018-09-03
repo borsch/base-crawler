@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="crawler.xsd">
     <crawler-delay>25000</crawler-delay>
-    <allow-http-errors>true</allow-http-errors>
+    <allowed-http-error-codes>
+        <code>403</code>
+    </allowed-http-error-codes>
     <fields>
         <field-description name="link">
             <selectors>

@@ -20,6 +20,12 @@ public class PageCrawler<T> {
     private final JsoupUtil jsoupUtil;
     private final Supplier<T> supplier;
 
+    /**
+     *
+     * @param pageDescription - page description extracted from XML page description
+     * @param jsoupUtil - used as parameter just not to create own property but use DI
+     * @param supplier - generator of new empty instance of class T
+     */
     public PageCrawler(PageDescription pageDescription, JsoupUtil jsoupUtil, Supplier<T> supplier) {
         if (pageDescription == null || jsoupUtil == null || supplier == null) {
             throw new IllegalArgumentException("All fields are required");
@@ -30,23 +36,26 @@ public class PageCrawler<T> {
         this.supplier = supplier;
     }
 
+    /**
+     * crawl page based on page description
+     *
+     * @param url - url which must be crawled
+     *
+     * @throws RuntimeException - in case if schema is bad formatted or it contains invalid selectors
+     *
+     * @return object in case crawling was successful, null - otherwise
+     */
     public T crawl(String url) {
         T object = supplier.get();
 
-        try {
-            Document document = jsoupUtil.parse(url, pageDescription.isAllowHttpErrors());
+        Document document = jsoupUtil.parse(url, pageDescription.getAllowedHttpErrorCodes());
 
-            if (document == null) {
-                return null;
-            }
-
-            for (FieldDescription fieldDescription : pageDescription.getFieldDescriptions()) {
-                initializeField(document, fieldDescription, object);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-
+        if (document == null) {
             return null;
+        }
+
+        for (FieldDescription fieldDescription : pageDescription.getFieldDescriptions()) {
+            initializeField(document, fieldDescription, object);
         }
 
         return object;
@@ -133,7 +142,7 @@ public class PageCrawler<T> {
                     }
                 }
             } else {
-                throw new RuntimeException("invalid schema");
+                throw new RuntimeException("Invalid schema");
             }
         } catch (Exception e) {
             throw new RuntimeException("Problem during crawling", e);

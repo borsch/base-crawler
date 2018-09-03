@@ -8,21 +8,23 @@
                         <xs:restriction base="xs:int" />
                     </xs:simpleType>
                 </xs:element>
+
+                <xs:element name="allowed-http-error-codes">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="code" maxOccurs="unbounded">
+
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
                 <xs:element name="fields">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element ref="field-description" maxOccurs="unbounded" />
                         </xs:sequence>
                     </xs:complexType>
-                </xs:element>
-
-                <xs:element name="allow-http-errors">
-                    <xs:simpleType>
-                        <xs:restriction>
-                            <xs:enumeration value="true" />
-                            <xs:enumeration value="false" />
-                        </xs:restriction>
-                    </xs:simpleType>
                 </xs:element>
             </xs:sequence>
         </xs:complexType>
