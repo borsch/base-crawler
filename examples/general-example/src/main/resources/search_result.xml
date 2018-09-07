@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="https://docs.crawler.kurpiak.net.ua/crawler-1.1.xsd">
+    <crawler-delay>0</crawler-delay>
+    <allowed-http-error-codes>
+        <code>200</code>
+    </allowed-http-error-codes>
+    <fields>
+        <field-description name="query">
+            <selectors>
+                <alternative selector="#lst-ib" source-type="attribute" source="value" />
+            </selectors>
+        </field-description>
+        <field-description name="links" type="list">
+            <selectors>
+                <alternative selector="#ires .g" />
+            </selectors>
+            <fields>
+                <field-description name="link">
+                    <selectors>
+                        <alternative selector=".r a" source-type="attribute" source="href" />
+                    </selectors>
+                </field-description>
+                <field-description name="title">
+                    <selectors>
+                        <alternative selector=".r a" />
+                    </selectors>
+                </field-description>
+                <field-description name="shortDescription">
+                    <selectors>
+                        <alternative selector=".s .st" />
+                    </selectors>
+                </field-description>
+            </fields>
+        </field-description>
+        <field-description name="alternativeSearches" type="list">
+            <selectors>
+                <alternative selector="#brs .nVcaUb" />
+            </selectors>
+            <fields>
+                <field-description name="query">
+                    <selectors>
+                        <alternative selector="a" />
+                    </selectors>
+                </field-description>
+                <field-description name="link">
+                    <selectors>
+                        <alternative selector="a" source-type="attribute" source="href" />
+                    </selectors>
+                    <post-processors>
+                        <prepend order="1" what="https://www.google.com.ua" />
+                    </post-processors>
+                </field-description>
+            </fields>
+        </field-description>
+    </fields>
+</page>
