@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://docs.crawler.kurpiak.net.ua/crawler-1.1.xsd">
+
+    <fields>
+        <field-description name="name">
+            <selectors>
+                <alternative selector=".name"/>
+            </selectors>
+        </field-description>
+        <field-description name="numberOfHP">
+            <selectors>
+                <alternative selector=".numberOfHP"/>
+            </selectors>
+        </field-description>
+        <field-description name="linkToPicture">
+            <selectors>
+                <alternative selector="a" source-type="attribute" source="href"/>
+            </selectors>
+        </field-description>
+    </fields>
+</page>
