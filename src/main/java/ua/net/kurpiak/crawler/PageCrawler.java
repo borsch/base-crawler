@@ -36,6 +36,7 @@ public class PageCrawler<T> {
         this.supplier = supplier;
     }
 
+
     /**
      * crawl page based on page description
      *
@@ -49,6 +50,30 @@ public class PageCrawler<T> {
         T object = supplier.get();
 
         Document document = jsoupUtil.parse(url, pageDescription.getAllowedHttpErrorCodes());
+
+        if (document == null) {
+            return null;
+        }
+
+        for (FieldDescription fieldDescription : pageDescription.getFieldDescriptions()) {
+            initializeField(document, fieldDescription, object);
+        }
+
+        return object;
+    }
+
+
+    /**
+     * crawl document based on page description
+     *
+     * @param document - document which must be crawled
+     *
+     * @throws RuntimeException - in case if schema is bad formatted or it contains invalid selectors
+     *
+     * @return object in case crawling was successful, null - otherwise
+     */
+    public T crawl(Document document) {
+        T object = supplier.get();
 
         if (document == null) {
             return null;
