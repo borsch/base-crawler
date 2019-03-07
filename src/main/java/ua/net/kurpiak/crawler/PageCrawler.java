@@ -47,19 +47,7 @@ public class PageCrawler<T> {
      * @return object in case crawling was successful, null - otherwise
      */
     public T crawl(String url) {
-        T object = supplier.get();
-
-        Document document = jsoupUtil.parse(url, pageDescription.getAllowedHttpErrorCodes());
-
-        if (document == null) {
-            return null;
-        }
-
-        for (FieldDescription fieldDescription : pageDescription.getFieldDescriptions()) {
-            initializeField(document, fieldDescription, object);
-        }
-
-        return object;
+        return crawl(jsoupUtil.parse(url, pageDescription.getAllowedHttpErrorCodes()));
     }
 
 
