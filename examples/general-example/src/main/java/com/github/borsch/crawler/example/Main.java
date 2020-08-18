@@ -1,11 +1,12 @@
-package ua.net.kurpiak.crawler.generalexample;
+package com.github.borsch.crawler.example;
 
-import ua.net.kurpiak.crawler.PageCrawler;
-import ua.net.kurpiak.crawler.domain.PageDescription;
-import ua.net.kurpiak.crawler.generalexample.domain.SearchResult;
-import ua.net.kurpiak.crawler.utils.JsoupUtil;
-import ua.net.kurpiak.crawler.xml.IXmlProcessor;
-import ua.net.kurpiak.crawler.xml.LocalXmlProcessor;
+import com.github.borsch.crawler.example.domain.SearchResult;
+
+import com.github.borsch.crawler.PageCrawler;
+import com.github.borsch.crawler.domain.PageDescription;
+import com.github.borsch.crawler.utils.JsoupUtil;
+import com.github.borsch.crawler.xml.IXmlProcessor;
+import com.github.borsch.crawler.xml.LocalXmlProcessor;
 
 public class Main {
 

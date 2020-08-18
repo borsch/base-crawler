@@ -1,4 +1,4 @@
-package ua.net.kurpiak.crawler.generalexample.domain;
+package com.github.borsch.crawler.example.domain;
 
 public class AlternativeSearch {
 
