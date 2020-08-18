@@ -1,4 +1,4 @@
-package ua.net.kurpiak.crawler.domain;
+package com.github.borsch.crawler.domain;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;

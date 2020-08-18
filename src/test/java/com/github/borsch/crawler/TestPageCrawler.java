@@ -1,14 +1,14 @@
-package ua.net.kurpiak.crawler;
+package com.github.borsch.crawler;
 
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Test;
-import ua.net.kurpiak.crawler.domain.CarTestEntity;
-import ua.net.kurpiak.crawler.domain.PageDescription;
-import ua.net.kurpiak.crawler.utils.JsoupUtil;
-import ua.net.kurpiak.crawler.xml.IXmlProcessor;
-import ua.net.kurpiak.crawler.xml.LocalXmlProcessor;
+import com.github.borsch.crawler.domain.CarTestEntity;
+import com.github.borsch.crawler.domain.PageDescription;
+import com.github.borsch.crawler.utils.JsoupUtil;
+import com.github.borsch.crawler.xml.IXmlProcessor;
+import com.github.borsch.crawler.xml.LocalXmlProcessor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

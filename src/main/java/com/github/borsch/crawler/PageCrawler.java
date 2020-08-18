@@ -1,11 +1,13 @@
-package ua.net.kurpiak.crawler;
+package com.github.borsch.crawler;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import ua.net.kurpiak.crawler.domain.*;
-import ua.net.kurpiak.crawler.processors.IPostProcessor;
-import ua.net.kurpiak.crawler.utils.JsoupUtil;
+
+import com.github.borsch.crawler.domain.FieldDescription;
+import com.github.borsch.crawler.domain.FieldDescriptionTypeEnum;
+import com.github.borsch.crawler.processors.IPostProcessor;
+import com.github.borsch.crawler.utils.JsoupUtil;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -13,6 +15,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
+
+import com.github.borsch.crawler.domain.PageDescription;
+import com.github.borsch.crawler.domain.SelectorAlternative;
 
 public class PageCrawler<T> {
 

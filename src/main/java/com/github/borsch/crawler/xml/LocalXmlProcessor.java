@@ -1,6 +1,6 @@
-package ua.net.kurpiak.crawler.xml;
+package com.github.borsch.crawler.xml;
 
-import ua.net.kurpiak.crawler.domain.PageDescription;
+import com.github.borsch.crawler.domain.PageDescription;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

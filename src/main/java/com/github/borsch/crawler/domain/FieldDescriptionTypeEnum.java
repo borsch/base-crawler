@@ -1,4 +1,4 @@
-package ua.net.kurpiak.crawler.domain;
+package com.github.borsch.crawler.domain;
 
 public enum FieldDescriptionTypeEnum {
 

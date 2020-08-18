@@ -1,9 +1,14 @@
-package ua.net.kurpiak.crawler.domain;
-
-import ua.net.kurpiak.crawler.processors.*;
+package com.github.borsch.crawler.domain;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;
+
+import com.github.borsch.crawler.processors.IPostProcessor;
+import com.github.borsch.crawler.processors.PrependPostProcessor;
+import com.github.borsch.crawler.processors.RegexPostProcessor;
+import com.github.borsch.crawler.processors.ReplacePostProcessor;
+import com.github.borsch.crawler.processors.SetValuePostProcessor;
+import com.github.borsch.crawler.processors.SubstringPostProcessor;
 
 @XmlRootElement(name = "field-description")
 public class FieldDescription {

@@ -1,4 +1,4 @@
-package ua.net.kurpiak.crawler.processors;
+package com.github.borsch.crawler.processors;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

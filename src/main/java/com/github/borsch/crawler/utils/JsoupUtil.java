@@ -1,4 +1,4 @@
-package ua.net.kurpiak.crawler.utils;
+package com.github.borsch.crawler.utils;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;

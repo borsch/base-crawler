@@ -1,4 +1,4 @@
-package ua.net.kurpiak.crawler.domain;
+package com.github.borsch.crawler.domain;
 
 public class CarTestEntity {
     private String name;
