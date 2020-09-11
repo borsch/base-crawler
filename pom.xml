@@ -4,7 +4,7 @@
 
     <groupId>com.github.borsch</groupId>
     <artifactId>base-crawler</artifactId>
-    <version>1.4-SNAPSHOT</version>
+    <version>2.0.0</version>
     <packaging>jar</packaging>
     <name>XML rule based crawler</name>
     <description>XML rules based crawler for static pages</description>
@@ -34,7 +34,7 @@
         <url>https://github.com/borsch/base-crawler</url>
         <connection>scm:git:git@github.com:borsch/base-crawler.git</connection>
         <developerConnection>scm:git:https://github.com/borsch/base-crawler.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>base-crawler-2.0.0</tag>
     </scm>
 
     <profiles>
