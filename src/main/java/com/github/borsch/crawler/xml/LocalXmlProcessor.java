@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 
 public class LocalXmlProcessor implements IXmlProcessor {
 
-    private Unmarshaller unmarshaller;
+    private final Unmarshaller unmarshaller;
 
     public LocalXmlProcessor() {
         try {

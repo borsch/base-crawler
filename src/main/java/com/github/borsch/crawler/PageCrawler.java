@@ -6,8 +6,9 @@ import org.jsoup.select.Elements;
 
 import com.github.borsch.crawler.domain.FieldDescription;
 import com.github.borsch.crawler.domain.FieldDescriptionTypeEnum;
+import com.github.borsch.crawler.jsoup.ConnectionRequest;
 import com.github.borsch.crawler.processors.IPostProcessor;
-import com.github.borsch.crawler.utils.JsoupUtil;
+import com.github.borsch.crawler.jsoup.JsoupUtil;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -52,7 +53,27 @@ public class PageCrawler<T> {
      * @return object in case crawling was successful, null - otherwise
      */
     public T crawl(String url) {
-        return crawl(jsoupUtil.parse(url, pageDescription.getAllowedHttpErrorCodes()));
+        return crawl(
+            ConnectionRequest.builder()
+                .url(url)
+                .ignoreHttpErrors(pageDescription.getAllowedHttpErrorCodes())
+                .build()
+        );
+    }
+
+    /**
+     * crawl page based on page description
+     *
+     * @param request - object that contains information about request
+     *
+     * @throws RuntimeException - in case if schema is bad formatted or it contains invalid selectors
+     *
+     * @return object in case crawling was successful, null - otherwise
+     */
+    public T crawl(ConnectionRequest request) {
+        return crawl(jsoupUtil.parse(
+            request
+        ));
     }
 
 

@@ -6,7 +6,7 @@ import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Test;
 import com.github.borsch.crawler.domain.CarTestEntity;
 import com.github.borsch.crawler.domain.PageDescription;
-import com.github.borsch.crawler.utils.JsoupUtil;
+import com.github.borsch.crawler.jsoup.JsoupUtil;
 import com.github.borsch.crawler.xml.IXmlProcessor;
 import com.github.borsch.crawler.xml.LocalXmlProcessor;
 
