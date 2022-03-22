@@ -3,7 +3,7 @@
     <xs:element name="page">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="crawler-delay">
+                <xs:element name="crawler-delay" minOccurs="0">
                     <xs:simpleType>
                         <xs:restriction base="xs:int" />
                     </xs:simpleType>

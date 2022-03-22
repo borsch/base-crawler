@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://docs.crawler.kurpiak.net.ua/crawler-1.1.xsd">
+      xsi:noNamespaceSchemaLocation="/crawler-1.1.xsd">
 
     <fields>
         <field-description name="name">
