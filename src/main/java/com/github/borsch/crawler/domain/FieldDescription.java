@@ -15,7 +15,7 @@ public class FieldDescription {
 
     private List<SelectorAlternative> selectors;
     private String fieldName;
-    private FieldDescriptionTypeEnum type;
+    private FieldDescriptionType type;
     private List<FieldDescription> fields;
     private List<IPostProcessor> postProcessors;
 
@@ -41,11 +41,11 @@ public class FieldDescription {
     }
 
     @XmlAttribute(name = "type")
-    public FieldDescriptionTypeEnum getType() {
+    public FieldDescriptionType getType() {
         return this.type;
     }
 
-    public void setType(FieldDescriptionTypeEnum type) {
+    public void setType(FieldDescriptionType type) {
         this.type = type;
     }
 

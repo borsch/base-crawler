@@ -5,8 +5,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
-import java.util.List;
 
+/**
+ * @deprecated directly pass HTML via {@link com.github.borsch.crawler.PageCrawler#crawlHtml(String)}
+ */
+@Deprecated
 public class JsoupUtil {
 
     public Document parse(String url) {
