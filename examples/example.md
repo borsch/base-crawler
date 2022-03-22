@@ -33,7 +33,7 @@ To do so you would need to create a simple xml files that contains rules of how 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="https://docs.crawler.kurpiak.net.ua/crawler-1.1.xsd">
+      xsi:noNamespaceSchemaLocation="https://docs.crawler.kurpiak.net.ua/ns/crawler-1.1.xsd">
 
     <fields>
         <field-description name="name">       <!-- CarTestEntity.name field  -->
