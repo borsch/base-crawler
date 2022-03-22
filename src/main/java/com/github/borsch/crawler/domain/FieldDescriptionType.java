@@ -1,6 +1,6 @@
 package com.github.borsch.crawler.domain;
 
-public enum FieldDescriptionTypeEnum {
+public enum FieldDescriptionType {
 
     object,
     list

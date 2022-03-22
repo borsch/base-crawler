@@ -8,15 +8,19 @@ import java.util.List;
 @XmlRootElement(name = "page")
 public class PageDescription {
 
+    @Deprecated
     private int crawlerDelay;
     private List<FieldDescription> fieldDescriptions;
+    @Deprecated
     private List<Integer> allowedHttpErrorCodes;
 
+    @Deprecated
     @XmlElement(name = "crawler-delay")
     public int getCrawlerDelay() {
         return crawlerDelay;
     }
 
+    @Deprecated
     public void setCrawlerDelay(int crawlerDelay) {
         this.crawlerDelay = crawlerDelay;
     }
@@ -31,12 +35,14 @@ public class PageDescription {
         this.fieldDescriptions = fieldDescriptions;
     }
 
+    @Deprecated
     @XmlElementWrapper(name = "allowed-http-error-codes")
     @XmlElement(name = "code")
     public List<Integer> getAllowedHttpErrorCodes() {
         return allowedHttpErrorCodes;
     }
 
+    @Deprecated
     public void setAllowedHttpErrorCodes(List<Integer> allowedHttpErrorCodes) {
         this.allowedHttpErrorCodes = allowedHttpErrorCodes;
     }

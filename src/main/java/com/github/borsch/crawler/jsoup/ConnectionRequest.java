@@ -7,6 +7,10 @@ import lombok.NonNull;
 import lombok.Singular;
 import lombok.Value;
 
+/**
+ * @deprecated directly pass HTML via {@link com.github.borsch.crawler.PageCrawler#crawlHtml(String)}
+ */
+@Deprecated
 @Builder
 @Value
 public class ConnectionRequest {
